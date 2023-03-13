@@ -1,0 +1,27 @@
+{
+  "name": "javascript-group-capstone",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ZewdieMc/javascript-group-capstone.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ZewdieMc/javascript-group-capstone/issues"
+  },
+  "homepage": "https://github.com/ZewdieMc/javascript-group-capstone#readme",
+  "devDependencies": {
+    "jest": "^29.5.0",
+    "jsdom": "^21.1.1",
+    "webpack": "^5.76.1",
+    "webpack-cli": "^5.0.1",
+    "webpack-dev-server": "^4.11.1"
+  }
+}
