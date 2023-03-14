@@ -85,7 +85,7 @@ main {
   border-radius: 8px;
 }
 
-.modalPopup{
+.modalPopup {
   position: absolute;
   top: 0;
   bottom: 0;
@@ -97,9 +97,8 @@ main {
   padding-top: 290px;
 }
 
-.modal-container{
+.modal-container {
   width: 40vw;
-  padding-top: 40px;
   display: flex;
   justify-content: center;
   flex-direction: column;
@@ -108,15 +107,15 @@ main {
   padding: 20px;
 }
 
-.closeIcon{
+.closeIcon {
   display: flex;
   justify-content: end;
 }
 
-.mealContent{
+.mealContent {
   display: flex;
   flex-direction: column;
-  align-items: center;  
+  align-items: center;
 }
 
-.hide { display: none ; }
+.hide { display: none; }
