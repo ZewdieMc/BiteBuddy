@@ -11,6 +11,8 @@ const render = (data) => {
     <p>${data.strCategoryDescription}</p>        
   </div>
   `;
+
+  document.body.appendChild(modal);
 };
 
 export default render;
