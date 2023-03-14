@@ -1,5 +1,11 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap');
 
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
 body {
   font-family: 'Poppins', sans-serif;
 }
@@ -13,7 +19,7 @@ footer {
   justify-content: center;
   align-items: center;
   background-color: grey;
-  height: 70px;
+  padding: 1rem;
 }
 
 header {
@@ -22,7 +28,7 @@ header {
   gap: 1rem;
   background: lightgray;
   padding: 1rem;
-  position: fixed;
+  position: absolute;
   top: 0;
   right: 0;
   left: 0;
@@ -39,4 +45,42 @@ header nav {
   justify-content: center;
   align-items: center;
   gap: 1rem;
+}
+
+main {
+  margin: auto;
+}
+
+.mealsContainer {
+  margin: 150px 1rem;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+  justify-content: center;
+}
+
+.mealsContainer .meal {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  align-items: center;
+}
+
+.mealsContainer .meal .meal-stats {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.meal-stats .fa-heart {
+  cursor: pointer;
+}
+
+.meal .comment-btn {
+  padding: 0.5rem 1rem;
+  text-align: center;
+  display: inline-block;
+  font-size: 16px;
+  cursor: pointer;
+  border-radius: 8px;
 }
