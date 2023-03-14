@@ -77,7 +77,7 @@ webpack
 
 ## 🚀 Live Demo <a name="live-demo"></a>
 [Coming soon]()
-<!--Have a look at the [live demo ](https://zewdiemc.github.io/Leaderboard/dist/) of the project.-->
+<!--Have a look at the [live demo ](https://zewdiemc.github.io/javascript-group-capstone/dist/) of the project.-->
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -100,13 +100,13 @@ In order to run this project you need:
 Clone this repository to your desired folder:
 ```sh
   cd my-folder
-  git clone git@github.com/ZewdieMc/javascirpt-captstone-project.git
+  git clone git@github.com/ZewdieMc/javascript-group-capstone.git
 ```
 ### Install
 
 Install this project with:
 ```sh
-  cd javascript-capstone-project
+  cd javascript-group-capstone/
   npm install
 ```
 
@@ -173,7 +173,7 @@ Deployed using Github Pages.
 
 Contributions, issues, and feature requests are welcome!
 
-Feel free to check the [issues page](https://github.com/ZewdieMc/LeaderBoard/issues).
+Feel free to check the [issues page](https://github.com/ZewdieMc/javascript-group-capstone/issues).
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
