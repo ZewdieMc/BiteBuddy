@@ -40,3 +40,5 @@ header nav {
   align-items: center;
   gap: 1rem;
 }
+
+.hide { display: none; }
