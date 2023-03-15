@@ -21,4 +21,3 @@ window.onload = () => {
 };
 const logoContainer = document.getElementById('bitebuddy-logo');
 logoContainer.src = logo;
-populateMeals();
