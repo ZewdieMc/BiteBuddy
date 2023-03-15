@@ -25,20 +25,18 @@ module.exports = {
   module: {
     rules: [
       {
-        test: /\.css$/i,
-        use: ['style-loader', 'css-loader'],
+        test: /\.scss$/i,
+        use: ['style-loader', 'css-loader', 'postcss-loader', 'sass-loader'],
       },
       {
-        test: /\.(gif|png|jpe?g)$/,
-        use: [
-          {
-            loader: 'file-loader',
-            options: {
-              name: '[name].[ext]',
-              outputPath: 'assets/images/',
-            },
+        test: /\.(png|jp(e*)g|svg)$/,
+        use: [{
+          loader: 'url-loader',
+          options: {
+            limit: 8000, // Convert images < 8kb to base64 strings
+            name: 'images/[hash]-[name].[ext]',
           },
-        ],
+        }],
       },
       {
         test: /\.html$/,
