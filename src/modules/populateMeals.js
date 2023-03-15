@@ -9,7 +9,7 @@ const populateMeals = () => {
 
       const modal = document.createElement('section');
       modal.classList.add('hide', 'modalPopup');
-      modal.setAttribute('id', `${meal.idCategory}`);
+      modal.setAttribute('id', `section-${meal.idCategory}`);
       mealDiv.innerHTML = `
       <div class="meal-img">
         <img src="${meal.strCategoryThumb}" alt="${meal.strCategory}">
@@ -27,7 +27,7 @@ const populateMeals = () => {
       modal.innerHTML = `
       <div class="modal-container">
       <div class="closeIcon">
-       <i class="fa-sharp fa-solid fa-xmark closeModal"></i>
+       <i data-closeid='${meal.idCategory}' class="fa-sharp fa-solid fa-xmark closeModal"></i>
      </div>
      <div class="mealContent">
       <img src="${meal.strCategoryThumb}" alt="${meal.strCategory} image">
@@ -38,6 +38,17 @@ const populateMeals = () => {
       `;
       mealDiv.appendChild(modal);
       mealsContainer.appendChild(mealDiv);
+    });
+    document.querySelectorAll('.comment-btn').forEach((btn) => {
+      btn.addEventListener('click', () => {
+        document.querySelector(`#section-${btn.dataset.mealid}`).classList.remove('hide');
+      });
+    });
+
+    document.querySelectorAll('.closeModal').forEach((close) => {
+      close.addEventListener('click', () => {
+        document.querySelector(`#section-${close.dataset.closeid}`).classList.add('hide');
+      });
     });
   });
 };
