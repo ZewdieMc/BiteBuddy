@@ -14,11 +14,14 @@ const populateMeals = () => {
       <div class="meal-img">
         <img src="${meal.strCategoryThumb}" alt="${meal.strCategory}">
       </div>
+      <div class="meal-stats-wrapper">
       <div class="meal-stats">
         <h3>${meal.strCategory}</h3>
-        <div><i class="fa-regular fa-heart"></i><p> 0 Likes </p></div>
+        <div>
+          <i class="fa-regular fa-heart fa-2x"></i><p> <span id='item-${meal.idCategory}'class="badge bg-primary rounded-pill ">10</span> Likes </p></div>
       </div>
-      <button data-mealId = '${meal.idCategory}'class="comment-btn">Comments</button>
+      <button data-mealId = '${meal.idCategory}'class="btn btn-success comment-btn">Comments</button>
+      </div>    
     `;
 
       modal.innerHTML = `
