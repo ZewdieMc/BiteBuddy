@@ -1,7 +1,7 @@
 /* eslint-disable camelcase, no-console */
 
 const pushComment = (meal) => {
-  const appId = 'mQsLNs528XlSYeyDcoUF';
+  const appId = 'QKwdfW5YtFFU0z305ADd';
   const involvementUrl = 'https://us-central1-involvement-api.cloudfunctions.net/capstoneApi/';
 
   const form = document.getElementById(`form-${meal.idCategory}`);

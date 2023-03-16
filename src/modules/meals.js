@@ -1,8 +1,12 @@
-const url = 'https://www.themealdb.com/api/json/v1/1/categories.php';
+import Like from './like.js';
 
-const getMeals = async () => {
-  const response = await fetch(url);
-  const data = await response.json();
-  return data;
+const mealsURL = 'https://www.themealdb.com/api/json/v1/1/categories.php';
+
+const fetchData = async () => {
+  const [mealsResponse, likesReponse] = await Promise.all([
+    fetch(mealsURL),
+    Like.getLikes(),
+  ]);
+  return Promise.all([mealsResponse.json(), likesReponse]);
 };
-export default getMeals;
+export default fetchData;
