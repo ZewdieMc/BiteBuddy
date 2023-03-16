@@ -1,4 +1,4 @@
-import pushComment from './involvement.js';
+import { pushComment, displayComments } from './involvement.js';
 import fetchData from './meals.js';
 
 const displayLikes = (likes) => {
@@ -9,7 +9,6 @@ const displayLikes = (likes) => {
 const populateMeals = async () => {
   const mealsContainer = document.querySelector('.mealsContainer');
   const [meals, likes] = await fetchData();
-  // meals.then((data) => {
   meals.categories.slice(0, 9).forEach((meal) => {
     const mealDiv = document.createElement('div');
     mealDiv.classList.add('meal');
@@ -41,6 +40,11 @@ const populateMeals = async () => {
        <h2>${meal.strCategory}</h2>
        <p>${meal.strCategoryDescription}</p>        
      </div>
+      <div class="comments-display" id="display-${meal.idCategory}">
+        <h3>Comments(0)</h3>
+        <div class="comments-container" id="container-${meal.idCategory}">          
+        </div>
+      </div>
      <form class="comment-form" id="form-${meal.idCategory}">
         <input type="text" name="Name" id="" placeholder="Your Name">
         <textarea name="Message" id="" cols="30" rows="10" placeholder="Your Insights"></textarea>
@@ -54,6 +58,8 @@ const populateMeals = async () => {
   document.querySelectorAll('.comment-btn').forEach((btn) => {
     btn.addEventListener('click', () => {
       document.querySelector(`#section-${btn.dataset.mealid}`).classList.remove('hide');
+      const meal = meals.categories.find((m) => m.idCategory === mealId);
+      displayComments(meal);
     });
     document.querySelectorAll('.comment-form').forEach((form) => {
       form.addEventListener('submit', (e) => {
@@ -61,6 +67,7 @@ const populateMeals = async () => {
         const mealId = e.target.parentNode.parentNode.parentNode.querySelector('.comment-btn').dataset.mealid;
         const meal = meals.categories.find((m) => m.idCategory === mealId);
         pushComment(meal);
+        displayComments(meal);
         form.reset();
       });
     });
@@ -73,7 +80,6 @@ const populateMeals = async () => {
   });
 
   displayLikes(likes);
-  // });
 };
 
 export default populateMeals;
