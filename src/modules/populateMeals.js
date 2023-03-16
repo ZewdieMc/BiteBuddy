@@ -1,6 +1,7 @@
 import pushComment from './involvement.js';
 import Like from './like.js';
 import fetchData from './meals.js';
+import itemCounter from './itemsCount.js';
 
 const displayLikes = (likes) => {
   likes.forEach((like) => {
@@ -11,12 +12,23 @@ const displayLikes = (likes) => {
 const handleLike = (elements) => {
   elements.forEach((element) => {
     element.addEventListener('click', async (e) => {
+      const currentLike = document.getElementById(`${e.target.dataset.itemid}`).textContent;
+      document.getElementById(`${e.target.dataset.itemid}`).textContent = `${parseInt(currentLike, 10) + 1}`;
       const status = await Like.postLike(e.target.dataset.itemid);
       if (status === 201) {
         Like.getLikes().then((likes) => {
-          displayLikes(likes);
+          const targetLike = likes.find((like) => like.item_id === e.target.dataset.itemid);
+          document.getElementById(`${targetLike.item_id}`).textContent = `${targetLike.likes}`;
         });
       }
+    });
+    element.addEventListener('mousedown', () => {
+      element.classList.remove('fa-regular');
+      element.classList.add('fa-solid');
+    });
+    element.addEventListener('mouseup', () => {
+      element.classList.remove('fa-solid');
+      element.classList.add('fa-regular');
     });
   });
 };
@@ -89,6 +101,7 @@ const populateMeals = async () => {
 
   displayLikes(likes);
   handleLike(document.querySelectorAll('.like'));
+  itemCounter();
 };
 
 export default populateMeals;
