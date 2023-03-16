@@ -1,3 +1,4 @@
+import pushComment from './involvement.js';
 import fetchData from './meals.js';
 
 const displayLikes = (likes) => {
@@ -40,6 +41,11 @@ const populateMeals = async () => {
        <h2>${meal.strCategory}</h2>
        <p>${meal.strCategoryDescription}</p>        
      </div>
+     <form class="comment-form" id="form-${meal.idCategory}">
+        <input type="text" name="Name" id="" placeholder="Your Name">
+        <textarea name="Message" id="" cols="30" rows="10" placeholder="Your Insights"></textarea>
+        <button type="submit" id="commentBtn">Comment</button>
+      </form>     
      </div>
       `;
     mealDiv.appendChild(modal);
@@ -48,6 +54,15 @@ const populateMeals = async () => {
   document.querySelectorAll('.comment-btn').forEach((btn) => {
     btn.addEventListener('click', () => {
       document.querySelector(`#section-${btn.dataset.mealid}`).classList.remove('hide');
+    });
+    document.querySelectorAll('.comment-form').forEach((form) => {
+      form.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const mealId = e.target.parentNode.parentNode.parentNode.querySelector('.comment-btn').dataset.mealid;
+        const meal = meals.categories.find((m) => m.idCategory === mealId);
+        pushComment(meal);
+        form.reset();
+      });
     });
   });
 
