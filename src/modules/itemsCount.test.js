@@ -19,4 +19,9 @@ describe('Test itemCounter', () => {
     document.body.innerHTML = '<div class="meal"></div><div class="meal"></div>';
     expect(itemCounter()).toBe(2);
   });
+
+  test('Test for 3 items', () => {
+    document.body.innerHTML = '<div class="meal"></div><div class="meal"></div><div class="meal"></div>';
+    expect(itemCounter()).toBe(3);
+  });
 });
