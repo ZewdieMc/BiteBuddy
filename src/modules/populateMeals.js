@@ -101,7 +101,7 @@ const populateMeals = async () => {
 
   displayLikes(likes);
   handleLike(document.querySelectorAll('.like'));
-  document.querySelector('#itemsCounter').textContent = itemCounter() ? `BiteBuddy Meals(${itemCounter()})` : 'BiteBuddyMeals';
+  document.querySelector('#itemsCounter').textContent = itemCounter() ? `BiteBuddyMeals(${itemCounter()})` : 'BiteBuddyMeals';
 };
 
 export default populateMeals;
