@@ -1,7 +1,7 @@
 /* eslint-disable camelcase, no-console */
 import commentCounter from './commentCount.js';
 
-const appId = 'QKwdfW5YtFFU0z305ADd';
+const appId = 'pgqQPEfft8XtKsYxgKvu';
 const involvementUrl = 'https://us-central1-involvement-api.cloudfunctions.net/capstoneApi/';
 
 const postComment = async (mealId, username, comment) => {
@@ -17,8 +17,7 @@ const postComment = async (mealId, username, comment) => {
     },
   });
 
-  const responseData = await response.text();
-  console.log(responseData);
+  return response.text();
 };
 
 const displayComments = async (meal) => {

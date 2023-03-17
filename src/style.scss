@@ -11,6 +11,10 @@ body {
   font-family: 'Poppins', sans-serif;
 }
 
+body.modal-open {
+  overflow: hidden;
+}
+
 footer {
   position: fixed;
   bottom: 0;
@@ -97,31 +101,34 @@ main {
 }
 
 .modalPopup {
-  position: absolute;
+  position: fixed;
   top: 0;
-  bottom: 0;
   left: 0;
+  bottom: 0;
   right: 0;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding-top: 290px;
+  margin: auto;
+  width: 80%;
+  z-index: 100;
+  overflow-y: scroll;
 }
 
 .modal-container {
-  width: 40vw;
+  background-color: #4d294e;
+  opacity: 0.99;
+  border: 2px solid lightgray;
   display: flex;
   justify-content: center;
   flex-direction: column;
-  background-color: aquamarine;
-  border: 2px solid black;
-  padding: 20px;
+  align-items: center;
+  padding: 4rem;
+  color: white;
 }
 
 .closeIcon {
   display: flex;
   justify-content: end;
   cursor: pointer;
+  align-self: flex-end;
 }
 
 .mealContent {
@@ -130,9 +137,37 @@ main {
   align-items: center;
 }
 
+.comment-form {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  align-items: center;
+  width: 50%;
+}
+
 .hide { display: none; }
 
 #itemsCounter {
   font-weight: bolder;
   font-size: 1rem;
+}
+
+.comments-display {
+  align-self: center;
+}
+
+@media screen and (max-width: 768px) {
+  .mealsContainer {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .comment-form {
+    width: 80%;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .mealsContainer {
+    grid-template-columns: repeat(1, 1fr);
+  }
 }
