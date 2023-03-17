@@ -1,4 +1,4 @@
-import pushComment from './involvement.js';
+import { postComment, displayComments } from './involvement.js';
 import Like from './like.js';
 import fetchData from './meals.js';
 import itemCounter from './itemsCount.js';
@@ -67,6 +67,11 @@ const populateMeals = async () => {
        <h2>${meal.strCategory}</h2>
        <p>${meal.strCategoryDescription}</p>        
      </div>
+      <div class="comments-display" id="display-${meal.idCategory}">
+        <h3>Comments(0)</h3>
+        <div class="comments-container" id="container-${meal.idCategory}">          
+        </div>
+      </div>
      <form class="comment-form" id="form-${meal.idCategory}">
         <input type="text" name="Name" id="" placeholder="Your Name">
         <textarea name="Message" id="" cols="30" rows="10" placeholder="Your Insights"></textarea>
@@ -76,26 +81,23 @@ const populateMeals = async () => {
       `;
     mealDiv.appendChild(modal);
     mealsContainer.appendChild(mealDiv);
-  });
-  document.querySelectorAll('.comment-btn').forEach((btn) => {
-    btn.addEventListener('click', () => {
-      document.querySelector(`#section-${btn.dataset.mealid}`).classList.remove('hide');
-    });
 
-    document.querySelectorAll('.comment-form').forEach((form) => {
-      form.addEventListener('submit', (e) => {
-        e.preventDefault();
-        const mealId = e.target.parentNode.parentNode.parentNode.querySelector('.comment-btn').dataset.mealid;
-        const meal = meals.categories.find((m) => m.idCategory === mealId);
-        pushComment(meal);
+    const commentBtn = mealDiv.querySelector('.comment-btn');
+    commentBtn.addEventListener('click', () => {
+      modal.classList.remove('hide');
+      displayComments(meal);
+    });
+    const closeBtn = modal.querySelector('.closeModal');
+    closeBtn.addEventListener('click', () => {
+      modal.classList.add('hide');
+    });
+    const form = modal.querySelector('.comment-form');
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      postComment(meal.idCategory, form.Name.value, form.Message.value).then(() => {
         form.reset();
+        displayComments(meal);
       });
-    });
-  });
-
-  document.querySelectorAll('.closeModal').forEach((close) => {
-    close.addEventListener('click', () => {
-      document.querySelector(`#section-${close.dataset.closeid}`).classList.add('hide');
     });
   });
 
