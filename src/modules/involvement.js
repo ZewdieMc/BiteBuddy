@@ -1,28 +1,43 @@
-const pushComment = (meal) => {
-  const appId = 'QKwdfW5YtFFU0z305ADd';
-  const involvementUrl = 'https://us-central1-involvement-api.cloudfunctions.net/capstoneApi/';
+/* eslint-disable camelcase, no-console */
 
-  const form = document.getElementById(`form-${meal.idCategory}`);
-  const postComment = async (url, form) => {
-    const formData = new FormData(form);
-    const username = formData.get('Name');
-    const comment = formData.get('Message');
-    const itemId = `section-${meal.idCategory}`;
-    const data = { itemId, username, comment };
+const appId = 'QKwdfW5YtFFU0z305ADd';
+const involvementUrl = 'https://us-central1-involvement-api.cloudfunctions.net/capstoneApi/';
 
-    const response = await fetch(url, {
-      method: 'POST',
-      body: JSON.stringify(data),
-      headers: {
-        'Content-type': 'application/json; charset=UTF-8',
-      },
-    });
+const postComment = async (mealId, username, comment) => {
+  const url = `${involvementUrl}apps/${appId}/comments`;
+  const item_id = `section-${mealId}`;
+  const data = { item_id, username, comment };
 
-    const responseData = await response.text();
-    return responseData;
-  };
+  const response = await fetch(url, {
+    method: 'POST',
+    body: JSON.stringify(data),
+    headers: {
+      'Content-type': 'application/json; charset=UTF-8',
+    },
+  });
 
-  postComment(`${involvementUrl}apps/${appId}/comments`, form);
+  const responseData = await response.text();
+  console.log(responseData);
 };
 
-export default pushComment;
+const displayComments = async (meal) => {
+  const commentDisplay = document.getElementById(`display-${meal.idCategory}`);
+  const getComments = async (url) => {
+    const response = await fetch(url);
+    const commentArray = await response.json();
+    return commentArray;
+  };
+
+  const comments = await getComments(`${involvementUrl}apps/${appId}/comments?item_id=section-${meal.idCategory}`);
+
+  const commentsContainer = document.getElementById(`container-${meal.idCategory}`);
+  commentsContainer.innerHTML = '';
+
+  comments.forEach((element) => {
+    const comment = document.createElement('p');
+    comment.innerHTML = `${element.creation_date} ${element.username}: ${element.comment}`;
+    commentsContainer.appendChild(comment);
+  });
+  commentDisplay.firstElementChild.textContent = `Comments (${comments.length})`;
+};
+export { postComment, displayComments };
