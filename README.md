@@ -34,7 +34,7 @@
 
 # 📖 BiteBuddy <a name="about-project"></a>
 
-BiteBuddy is a simple and powerful application that displays list of meal items on the dashboard where a customer can like, comment and order mill. It is built with webpack and the Fetch javascript API.
+BiteBuddy is a simple and powerful application that displays list of meal items on the dashboard where a customer can like, comment and order mill. It is built with webpack and the Fetch javascript API. [You can watch a brief demo here](https://drive.google.com/file/d/1-oNMnokwaJ0B-OMvO-gYN7jupWm06ED5/view?usp=sharing).
 
 ## 🛠 Built With <a name="built-with"></a>
 webpack
@@ -76,8 +76,8 @@ webpack
 <!-- LIVE DEMO -->
 
 ## 🚀 Live Demo <a name="live-demo"></a>
-[Coming soon]()
-<!--Have a look at the [live demo ](https://zewdiemc.github.io/javascript-group-capstone/dist/) of the project.-->
+
+Have a look at the [live demo ](https://zewdiemc.github.io/javascript-group-capstone/dist/) of the project.
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
