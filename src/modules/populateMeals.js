@@ -1,4 +1,4 @@
-import { pushComment, displayComments } from './involvement.js';
+import { postComment, displayComments } from './involvement.js';
 import fetchData from './meals.js';
 
 const displayLikes = (likes) => {
@@ -54,28 +54,23 @@ const populateMeals = async () => {
       `;
     mealDiv.appendChild(modal);
     mealsContainer.appendChild(mealDiv);
-  });
-  document.querySelectorAll('.comment-btn').forEach((btn) => {
-    btn.addEventListener('click', () => {
-      document.querySelector(`#section-${btn.dataset.mealid}`).classList.remove('hide');
-      const meal = meals.categories.find((m) => m.idCategory === mealId);
+
+    const commentBtn = mealDiv.querySelector('.comment-btn');
+    commentBtn.addEventListener('click', () => {
+      modal.classList.remove('hide');
       displayComments(meal);
     });
-    document.querySelectorAll('.comment-form').forEach((form) => {
-      form.addEventListener('submit', (e) => {
-        e.preventDefault();
-        const mealId = e.target.parentNode.parentNode.parentNode.querySelector('.comment-btn').dataset.mealid;
-        const meal = meals.categories.find((m) => m.idCategory === mealId);
-        pushComment(meal);
-        displayComments(meal);
-        form.reset();
-      });
+    const closeBtn = modal.querySelector('.closeModal');
+    closeBtn.addEventListener('click', () => {
+      modal.classList.add('hide');
     });
-  });
-
-  document.querySelectorAll('.closeModal').forEach((close) => {
-    close.addEventListener('click', () => {
-      document.querySelector(`#section-${close.dataset.closeid}`).classList.add('hide');
+    const form = modal.querySelector('.comment-form');
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      postComment(meal.idCategory, form.Name.value, form.Message.value).then(() => {
+        form.reset();
+        displayComments(meal);
+      });
     });
   });
 
