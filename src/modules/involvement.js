@@ -1,5 +1,3 @@
-/* eslint-disable camelcase, no-console */
-
 const pushComment = (meal) => {
   const appId = 'QKwdfW5YtFFU0z305ADd';
   const involvementUrl = 'https://us-central1-involvement-api.cloudfunctions.net/capstoneApi/';
@@ -9,8 +7,8 @@ const pushComment = (meal) => {
     const formData = new FormData(form);
     const username = formData.get('Name');
     const comment = formData.get('Message');
-    const item_id = `section-${meal.idCategory}`;
-    const data = { item_id, username, comment };
+    const itemId = `section-${meal.idCategory}`;
+    const data = { itemId, username, comment };
 
     const response = await fetch(url, {
       method: 'POST',
@@ -21,7 +19,7 @@ const pushComment = (meal) => {
     });
 
     const responseData = await response.text();
-    console.log(responseData);
+    return responseData;
   };
 
   postComment(`${involvementUrl}apps/${appId}/comments`, form);
