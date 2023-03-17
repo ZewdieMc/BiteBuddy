@@ -1,11 +1,37 @@
 import { postComment, displayComments } from './involvement.js';
 import fetchData from './meals.js';
+import itemCounter from './itemsCount.js';
 
 const displayLikes = (likes) => {
   likes.forEach((like) => {
     document.getElementById(`${like.item_id}`).textContent = `${like.likes}`;
   });
 };
+
+const handleLike = (elements) => {
+  elements.forEach((element) => {
+    element.addEventListener('click', async (e) => {
+      const currentLike = document.getElementById(`${e.target.dataset.itemid}`).textContent;
+      document.getElementById(`${e.target.dataset.itemid}`).textContent = `${parseInt(currentLike, 10) + 1}`;
+      const status = await Like.postLike(e.target.dataset.itemid);
+      if (status === 201) {
+        Like.getLikes().then((likes) => {
+          const targetLike = likes.find((like) => like.item_id === e.target.dataset.itemid);
+          document.getElementById(`${targetLike.item_id}`).textContent = `${targetLike.likes}`;
+        });
+      }
+    });
+    element.addEventListener('mousedown', () => {
+      element.classList.remove('fa-regular');
+      element.classList.add('fa-solid');
+    });
+    element.addEventListener('mouseup', () => {
+      element.classList.remove('fa-solid');
+      element.classList.add('fa-regular');
+    });
+  });
+};
+
 const populateMeals = async () => {
   const mealsContainer = document.querySelector('.mealsContainer');
   const [meals, likes] = await fetchData();
@@ -24,7 +50,7 @@ const populateMeals = async () => {
       <div class="meal-stats">
         <h3>${meal.strCategory}</h3>
         <div>
-          <i class="fa-regular fa-heart fa-2x"></i><p> <span id='item-${meal.idCategory}'class="badge bg-danger rounded-pill px-3 ">0</span> Likes </p></div>
+          <i data-itemid = 'item-${meal.idCategory}'class="fa-regular fa-heart fa-2x like"></i><p> <span id='item-${meal.idCategory}'class="badge bg-danger rounded-pill px-3 ">0</span> Likes </p></div>
       </div>
       <button data-mealId = '${meal.idCategory}'class="btn btn-success comment-btn">Comments</button>
       </div>    
@@ -75,6 +101,8 @@ const populateMeals = async () => {
   });
 
   displayLikes(likes);
+  handleLike(document.querySelectorAll('.like'));
+  document.querySelector('#itemsCounter').textContent = itemCounter() ? `BiteBuddyMeals(${itemCounter()})` : 'BiteBuddyMeals';
 };
 
 export default populateMeals;
