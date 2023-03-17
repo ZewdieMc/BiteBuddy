@@ -1,4 +1,5 @@
 /* eslint-disable camelcase, no-console */
+import commentCounter from './commentCount.js';
 
 const appId = 'QKwdfW5YtFFU0z305ADd';
 const involvementUrl = 'https://us-central1-involvement-api.cloudfunctions.net/capstoneApi/';
@@ -38,6 +39,6 @@ const displayComments = async (meal) => {
     comment.innerHTML = `${element.creation_date} ${element.username}: ${element.comment}`;
     commentsContainer.appendChild(comment);
   });
-  commentDisplay.firstElementChild.textContent = `Comments (${comments.length})`;
+  commentDisplay.firstElementChild.textContent = `Comments (${commentCounter()})`;
 };
 export { postComment, displayComments };
