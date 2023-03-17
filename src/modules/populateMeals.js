@@ -72,10 +72,11 @@ const populateMeals = async () => {
         <div class="comments-container" id="container-${meal.idCategory}">          
         </div>
       </div>
+      <h3>Add a comment</h3>
      <form class="comment-form" id="form-${meal.idCategory}">
-        <input type="text" name="Name" id="" placeholder="Your Name">
-        <textarea name="Message" id="" cols="30" rows="10" placeholder="Your Insights"></textarea>
-        <button type="submit" id="commentBtn">Comment</button>
+        <input class='form-control'type="text" name="Name" id="" placeholder="Your Name">
+        <textarea class='form-control'name="Message" id="" cols="30" rows="10" placeholder="Your Insights"></textarea>
+        <button class='btn btn-primary'type="submit" id="commentBtn">Comment</button>
       </form>     
      </div>
       `;
@@ -85,11 +86,13 @@ const populateMeals = async () => {
     const commentBtn = mealDiv.querySelector('.comment-btn');
     commentBtn.addEventListener('click', () => {
       modal.classList.remove('hide');
+      document.body.classList.add('modal-open');
       displayComments(meal);
     });
     const closeBtn = modal.querySelector('.closeModal');
     closeBtn.addEventListener('click', () => {
       modal.classList.add('hide');
+      document.body.classList.remove('modal-open');
     });
     const form = modal.querySelector('.comment-form');
     form.addEventListener('submit', (e) => {

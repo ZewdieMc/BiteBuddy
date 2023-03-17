@@ -1,13 +1,13 @@
 const baseLikesURL = 'https://us-central1-involvement-api.cloudfunctions.net/capstoneApi/';
 const appEndPoint = 'apps/';
 const likesEndPoint = '/likes/';
-const appID = 'QKwdfW5YtFFU0z305ADd';
+const appID = 'pgqQPEfft8XtKsYxgKvu';
 class Like {
   async createApp() {
-    this.ID = await fetch(baseLikesURL + appEndPoint, {
+    const reponse = await fetch(baseLikesURL + appEndPoint, {
       method: 'POST',
     });
-    return this.ID;
+    this.appID = await reponse.text();
   }
 
   static async getLikes() {
