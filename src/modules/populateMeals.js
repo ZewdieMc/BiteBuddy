@@ -1,4 +1,5 @@
 import { postComment, displayComments } from './involvement.js';
+import Like from './like.js';
 import fetchData from './meals.js';
 import itemCounter from './itemsCount.js';
 
