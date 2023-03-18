@@ -42,6 +42,14 @@ header nav {
   gap: 1rem;
 }
 
+header nav ul {
+  list-style: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+}
+
 header #bitebuddy-logo {
   border-radius: 50%;
   width: 70px;
@@ -162,7 +170,7 @@ main {
   }
 
   .comment-form {
-    width: 80%;
+    width: 90%;
   }
 }
 

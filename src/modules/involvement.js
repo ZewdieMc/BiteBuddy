@@ -1,4 +1,3 @@
-/* eslint-disable camelcase, no-console */
 import commentCounter from './commentCount.js';
 
 const appId = 'pgqQPEfft8XtKsYxgKvu';
@@ -6,8 +5,7 @@ const involvementUrl = 'https://us-central1-involvement-api.cloudfunctions.net/c
 
 const postComment = async (mealId, username, comment) => {
   const url = `${involvementUrl}apps/${appId}/comments`;
-  const item_id = `section-${mealId}`;
-  const data = { item_id, username, comment };
+  const data = { item_id: `section-${mealId}`, username, comment };
 
   const response = await fetch(url, {
     method: 'POST',
