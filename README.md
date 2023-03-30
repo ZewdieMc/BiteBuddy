@@ -77,7 +77,7 @@ webpack
 
 ## 🚀 Live Demo <a name="live-demo"></a>
 
-Have a look at the [live demo ](https://zewdiemc.github.io/bitebuddy/dist/) of the project.
+Have a look at the [live demo ](https://zewdiemc.github.io/BiteBuddy/dist/) of the project.
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
